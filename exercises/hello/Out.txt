@@ -1,0 +1,4 @@
+Hello world, I love you
+You are pretty and nice
+x equals: 7
+result equals: 0.142857142857143
