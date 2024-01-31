@@ -2,8 +2,8 @@ Out.txt : hello.exe         # Out.txt depends on bytecode executable hello.exe
 	mono hello.exe > Out.txt  # run hello.exe in mono, redirect output into Out.txt
 
 hello.exe : hello.cs           # bytecode hello.exe depends on source-code hello.cs
-	mcs -out:hello.exe hello.cs   # compile hello.cs, output goes to hello.exe
+	mcs -out:hello.exe -target:exe hello.cs   # compile hello.cs, output goes to hello.exe
 
-.PHONEY:clean           # clean is a phoney target
+.PHONEY:clean           # clean is a phoney target. Phony means that the target is internal in make.
 clean:                  # does not depend on anything
 	rm --force Out.txt hello.exe # remove the files produced by making
