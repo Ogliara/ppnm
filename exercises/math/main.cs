@@ -20,6 +20,7 @@ class math{
 		Write($"x={x}\n");  //Using the dollar-sign to denote string. Thus, we don't need references.
 		
 		//Tasks:
+		Write("Tasks:\n");
 		double sqrt2 = Math.Sqrt(2.0);
 		Write($"sqrt2 = {sqrt2}, and sqrt2*sqrt2 = {sqrt2 * sqrt2}\n");
 
@@ -36,11 +37,13 @@ class math{
 
 
 
-		//Using the special functions library.
+		//Using the special functions library, sfunc
 		int fact = 1;
 		for(int i=1; i<10; i+=1){
 			Write($"fgamma({i}) = {sfunc.fgamma(i)} and ({i}-1)! = {fact}\n");
 			fact = fact*i;
+			Write($"lngamma({i}) = {sfunc.lngamma(i)} and exp(lngamma({i})) = {Math.Exp(sfunc.lngamma(i))}\n");
+			Write("\n");
 		}		
 
 
