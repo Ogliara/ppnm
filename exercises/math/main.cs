@@ -19,10 +19,28 @@ class math{
 			x, sinx, abs_sinx);
 		Write($"x={x}\n");  //Using the dollar-sign to denote string. Thus, we don't need references.
 		
+		//Tasks:
+		double sqrt2 = Math.Sqrt(2.0);
+		Write($"sqrt2 = {sqrt2}, and sqrt2*sqrt2 = {sqrt2 * sqrt2}\n");
+
+		double twopower = Math.Pow(2.0, 1d/5d);
+		Write($"2^1/5 = {twopower} and (2^1/5)^5 = {Math.Pow(twopower, 5.0)}\n");
+
+		double etopi = Math.Exp(Math.PI);
+		Write($"e^pi = {etopi} and ln(e^pi) = {Math.Log(etopi)}\n");
+		
+		double pitoe = Math.Pow(Math.PI, Math.Exp(1));
+		Write($"pi^e = {pitoe} and ln(pi^e) = {Math.Log(pitoe, Math.PI)}\n");
+
+
+
+
 
 		//Using the special functions library.
+		int fact = 1;
 		for(int i=1; i<10; i+=1){
-			Write($"fgamma({i})={sfunc.fgamma(i)}\n");
+			Write($"fgamma({i}) = {sfunc.fgamma(i)} and ({i}-1)! = {fact}\n");
+			fact = fact*i;
 		}		
 
 
