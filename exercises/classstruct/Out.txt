@@ -1,0 +1,42 @@
+x>y
+i=1
+i=2
+i=3
+i=4
+i=5
+i=6
+i=7
+i=8
+i=9
+n=0
+n=1
+n=2
+n=3
+n=4
+n=5
+n=6
+n=7
+n=8
+n=9
+1
+2
+3
+4
+5
+ai=1
+ai=2
+ai=3
+ai=4
+ai=5
+
+
+A.s = Hello
+b.s = Hello
+A.s = Hello
+b.s = Hello
+B.s = new string
+a.s = Hello
+A.s = new string
+b.s = new string
+x = 1
+77777

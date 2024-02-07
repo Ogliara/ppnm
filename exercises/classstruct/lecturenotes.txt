@@ -1,0 +1,7 @@
+A couple of notes:
+- Main class arguments (args) can be of any type and made as an array. They can also be declared in the Makefile.
+- Dimitri has a lot of code on the website to reference if needed.
+- Ask Bard or ChatGPT or similar NNs for help on syntax. It's easier than breaking your back over it.
+
+- A reference type refers to a place in the memory. Classes are references.
+- A value type copies the value independently from the previous thing.
