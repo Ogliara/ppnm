@@ -1,1 +1,23 @@
-Hello
+Max int = 2147483647
+Min int = -2147483648
+Machine epsilon, double = 2.22044604925031E-16
+Compare to Pow(2,-52) = 2.22044604925031E-16
+Machine epsilon, float = 1.192093E-07
+Compare to Pow(2,-23) = 1.19209289550781E-07
+tiny = 1.11022302462516E-16
+a = 1
+b = 1
+a==b ? False
+a>1 ? False
+b>1 ? True
+a==1 ? True
+b==1 ? False
+The variable a gets saved in the memory as 1 to begin with, after which 
+Tiny is added to it. This then gets rounded down to 1, since 1 is so much 
+greater than Tiny. The variable b, however, gets saved first as Tiny, after which 
+1 is added to it. This then doesn't get rounded, I'm guessing since Tiny is 
+stored in the variable.
+d1 = 7.999999999999999e-001
+d2 = 8.000000000000000e-001
+d1==d2 gives False
+Is d1 and d2 similar? True
