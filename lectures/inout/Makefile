@@ -1,6 +1,6 @@
 default: Out-stdio.txt out.txt
 
-Out-stdio.txt: stdio.exe input Makefile
+Out-stdio.txt: stdio.exe input
 	mono $< <input 1> $@ 2> log-stdio.txt
 	echo "\n" >> $@
 	cat input | mono $< 1>> $@ 2>> log-stdio.txt
