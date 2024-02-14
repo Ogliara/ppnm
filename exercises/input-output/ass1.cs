@@ -12,7 +12,7 @@ public class ass1{
 				}
 			}
 		}
-		
+		/*
 		char[] split_delimiters = {' ', '\t', '\n'};
 		//var split_options = StringSplitOptions.RemoveEmptyEntries;
 		for(string line = System.Console.ReadLine(); line != null; line = System.Console.ReadLine()){
@@ -22,7 +22,7 @@ public class ass1{
 				System.Console.Error.WriteLine($"${x} {Sin(x)} {Cos(x)}");
 			}
 		}
-
+		*/
 		return 0;
 	}//main func
 }//main class
