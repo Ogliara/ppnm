@@ -18,7 +18,19 @@ class main{
 		list[1] = 0;
 		for(int i=0; i<list.size; i++) System.Console.WriteLine(list[i]);
 
+		//Just convincing myself of how redirecting objects works
+		System.Console.WriteLine($"list has size {list.size} and data length {list.data.Length}.");
+		
+		//Testing my remove method
+		System.Console.WriteLine("Before removal");
+		for(int i=0; i<list.size; i++) System.Console.WriteLine(list[i]);		
+		list.remove(1);
+		System.Console.WriteLine("After removal");
+		for(int i=0; i<list.size; i++) System.Console.WriteLine(list[i]);
+		System.Console.WriteLine($"list now has size {list.size} and data length {list.data.Length}.");
 
+
+		//Function list example
 		double x=10;
 		a=7;
 		System.Func<double,double> f = delegate(double tmp){return a;};  //captures by reference

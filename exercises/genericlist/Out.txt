@@ -2,6 +2,13 @@
 2
 0
 0
+list has size 2 and data length 2.
+Before removal
+0
+0
+After removal
+0
+list now has size 1 and data length 1.
 f(10) = 9
 f[0](10) = 666
 f[1](10) = -0.54402111088937
