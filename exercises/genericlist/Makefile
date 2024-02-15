@@ -1,8 +1,17 @@
-Out.txt: main.exe
-	mono $< 1> Out.txt 2>log
+default: Out_example.txt out_tablereader.txt
 
-main.exe: main.cs genlist.dll
-	mcs -out:$@ -target:exe -reference:genlist.dll main.cs
+Out_example.txt: example.exe Makefile
+	mono $< 1> Out_example.txt 2>log
+
+out_tablereader.txt: tablereader.exe inputfile.txt Makefile
+	cat inputfile.txt | mono tablereader.exe 1> $@
+
+
+example.exe: example.cs genlist.dll
+	mcs -out:$@ -target:exe -reference:genlist.dll example.cs
+
+tablereader.exe: tablereader.cs genlist.dll
+	mcs -out:$@ -target:exe -reference:genlist.dll tablereader.cs
 
 genlist.dll: genlist.cs
 	mcs -out:$@ -target:library genlist.cs
@@ -10,4 +19,4 @@ genlist.dll: genlist.cs
 
 .PHONEY: clean
 clean:
-	$(RM) *.dll *.exe log* [Ou]ut*
+	$(RM) genlist.dll *.exe log* [Oo]ut*
