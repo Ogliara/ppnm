@@ -24,3 +24,9 @@ Out.txt: main.exe
 
 sfuns.dll: sfuns.cs ; $(MKLIB)
 main.exe: main.cs  sfuns.dll; $(MKEXE)
+
+
+
+.PHONEY: clean
+clean:
+	$(RM) main.exe sfuns.dll Out.txt Erf.gnuplot.svg log.gpi
