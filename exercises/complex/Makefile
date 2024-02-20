@@ -7,6 +7,6 @@ main.exe: main.cs cmath.dll
 cmath.dll: cmath.cs complex.cs
 	mcs -target:library -out:./cmath.dll $^
 
-PHONEY: clean
+.PHONEY: clean
 clean:
 	rm -f cmath.dll main.exe Out.txt

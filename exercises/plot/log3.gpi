@@ -1,0 +1,12 @@
+\
+	set terminal svg background "white" ;\
+	set out "Lngamma.gnuplot.svg" ;\
+	set key left;\
+	set xlabel "x" ;\
+	set ylabel "lngamma(x)" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Lngamma function" ;\
+	plot [0:][-2:]\
+		"Out3.txt" with lines notitle ;\
+

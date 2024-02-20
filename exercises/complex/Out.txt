@@ -1,5 +1,13 @@
 sqrt(-1) = 6.12e-17+1i
-Real part of -1 = -1
-Img part of -1 = 0
+
 sqrt(i) = 0.707+0.707i
 argument of i = 1.5707963267949
+
+e^i = 0.54+0.841i
+Comparing Re to cos(1) gives True
+Comparing Im to sin(1) True
+
+e^(i*pi) = -1+1.22e-16i
+Comparing Re to cos(pi) gives True
+Comparing Im to sin(pi) gives True
+

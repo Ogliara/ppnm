@@ -1,0 +1,13 @@
+\
+	set terminal svg background "white" ;\
+	set out "Gamma.gnuplot.svg" ;\
+	set key left;\
+	set xlabel "x" ;\
+	set ylabel "gamma(x)" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Gamma function with n-1 factorials" ;\
+	plot [-4.1:][-10:10]\
+		"Out2.txt" with lines notitle \
+		,"factorials.txt" using (($1)+1):2 with points pointtype 6 notitle ;\
+
