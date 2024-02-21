@@ -1,0 +1,5 @@
+\
+	set terminal svg background "white" ;\
+	set out "Out.times.svg" ;\
+	plot  "out.times.txt" with lp ;\
+	
