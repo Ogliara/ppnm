@@ -6,7 +6,7 @@ class main{
 		harmdata d = (harmdata)obj;
 		d.sum = 0;
 		System.Console.Write($"Harm, a={d.a} b={d.b}\n");
-		for(int i=d.a; i<=d.b; i++) d.sum+=1.0/1;
+		for(int i=d.a; i<=d.b; i++) d.sum+=1.0/i;
 		System.Console.Write($"Harm, sum={d.sum}\n");
 		}
 
