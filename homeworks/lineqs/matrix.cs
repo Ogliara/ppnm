@@ -51,7 +51,7 @@ public class vector{
 			return newvec;
 			}
 		for(int i=0; i<v.size; i++){
-			newvec[i] = v[i] - v[i];
+			newvec[i] = v[i] - u[i];
 			}
 		return newvec;
 		}
@@ -108,11 +108,18 @@ public class matrix{
 				clone[i,j] = this[i,j];
 				}
 			}
-		
 		return clone;
-		}
+		}//copy method
 
-
+	public matrix transpose(){
+		matrix trans = new matrix(this.amountcols, this.amountrows);
+		for(int i=0; i<this.amountrows; i++){
+			for(int j=0; j<this.amountcols; j++){
+				trans[j,i] = this[i,j];
+				}
+			}
+		return trans;
+		}//transpose method
 
 }//matrix class
 
@@ -129,10 +136,11 @@ public static class QRGS{
 			Q[i] = Q[i]/R[i,i];
 			for(int j=i+1; j<A.amountcols; j++){
 				R[i,j] = vector.dot(Q[i],Q[j]);
-				Q[j] = Q[j] - Q[i]*vector.dot(Q[i],Q[j]);
+				Q[j] = Q[j] - Q[i]*R[i,j];
 				}
 			}
 		return (Q,R);
 		}//decomp function
 
+	//public static vector solve(matrix Q, matrix R)
 }//QRGS class

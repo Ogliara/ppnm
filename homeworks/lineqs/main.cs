@@ -35,7 +35,14 @@ static class main{
 		Console.WriteLine(Acol0[0]);
 		Console.WriteLine(Acol0[1]);
 
-
+		
+		Console.WriteLine($"Testing decomp");
+		(matrix AQ, matrix AR) = QRGS.decomp(A);
+		showmatrix(AQ);
+		showmatrix(AR);
+		
+		matrix AQt = AQ.transpose();
+		showmatrix(matrix.product(AQt,AQ));
 
 		return 0;
 	}//Main func
