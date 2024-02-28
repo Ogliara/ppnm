@@ -101,6 +101,18 @@ public class matrix{
 		return C;
 		}//product function
 
+	public static vector product(matrix A, vector b){ //product overload with vector b
+		vector c = new vector(b.size);  //resulting vector, A*b=c
+		for(int i=0; i<c.size; i++){
+			double element = 0;
+			for(int j=0; j<c.size; j++){
+				element = element + A[i,j]*b[j];
+				}
+			c[i] = element;
+			}
+		return c;
+		}//product function overload
+
 	public matrix copy(){
 		matrix clone = new matrix(this.amountrows, this.amountcols);
 		for(int i=0; i<this.amountrows; i++){
@@ -142,5 +154,8 @@ public static class QRGS{
 		return (Q,R);
 		}//decomp function
 
-	//public static vector solve(matrix Q, matrix R)
+	public static vector solve(matrix Q, matrix R, vector b){
+		vector y = new vector(R.amountrows);
+		return y;
+		}
 }//QRGS class

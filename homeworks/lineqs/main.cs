@@ -34,6 +34,8 @@ static class main{
 		vector Acol0 = A[0];		
 		Console.WriteLine(Acol0[0]);
 		Console.WriteLine(Acol0[1]);
+		vector prodtest = matrix.product(A,Acol0);
+		Console.WriteLine($"Testing matrix times vector, A*Acol0 = {prodtest[0]} {prodtest[1]}");
 
 		
 		Console.WriteLine($"Testing decomp");
@@ -43,6 +45,9 @@ static class main{
 		
 		matrix AQt = AQ.transpose();
 		showmatrix(matrix.product(AQt,AQ));
+
+		showmatrix(matrix.product(AQ,AR));
+
 
 		return 0;
 	}//Main func
