@@ -64,6 +64,7 @@ static class main{
 		double detR = QRGS.det_tri(R);
 		Console.WriteLine($"Determinant of R is {detR}");
 		
+		matrix Rinv = QRGS.inverse(R);
 
 		return 0;
 	}//Main func

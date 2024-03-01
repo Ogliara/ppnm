@@ -253,4 +253,16 @@ public static class QRGS{
 			}
 		return det;
 		}
+
+	public static matrix inverse(matrix A){
+		if(A.amountrows != A.amountcols){
+			throw new System.ArgumentException("Matrix must be square");
+			}
+		int n = A.amountrows;
+		matrix inv = new matrix(n,n);
+		
+
+		return inv;
+		}
+
 }//QRGS class
