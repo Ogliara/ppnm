@@ -12,6 +12,23 @@ public class vector{
 		data = new double[n];
 		}
 
+	public static vector random(int n, int range=10){
+		var rnd = new System.Random();
+		vector v = new vector(n);
+		for(int i=0; i<n; i++){
+			v[i] = rnd.NextDouble()*range;
+			}
+		return v;
+		}
+
+	public void show(){
+		for(int i=0; i<this.size; i++){
+			System.Console.WriteLine(this[i]);
+			}
+		}
+
+	public void print() => show();
+
 	public double norm(){
 		double sum = 0;
 		for(int i=0; i<size; i++){sum = sum + data[i]*data[i];}
@@ -56,8 +73,15 @@ public class vector{
 		return newvec;
 		}
 
-
-
+	public static bool compare(vector a, vector b){
+		if(a.size != b.size){
+			System.Console.WriteLine("Vectors must be of the size");
+			return false;}
+		for(int i=0; i<a.size; i++){
+			if(matrix.approx(a[i], b[i])==false) return false;
+			}
+		return true;
+		}
 }//vector class
 
 public class matrix{
@@ -71,8 +95,8 @@ public class matrix{
 		}
 
 	public double this[int i, int j]{
-		get {return data[j*amountcols + i];}
-		set {data[j*amountcols + i] = value;}
+		get {return data[j*amountrows + i];}
+		set {data[j*amountrows + i] = value;}
 		}
 
 	public vector this[int j]{
@@ -84,6 +108,37 @@ public class matrix{
 			}//set
 		}
 
+	public static matrix identity(int n){
+		matrix identity = new matrix(n,n);
+		for(int i=0; i<n; i++){
+			identity[i,i] = 1;
+			}
+		return identity;
+		}
+
+	public static matrix random(int n, int m, int range=10){
+		var rnd = new System.Random();
+		matrix A = new matrix(n,m);
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				A[i,j] = rnd.NextDouble()*range;
+				}
+			}
+		return A;
+		}
+
+	public void show(){
+		for(int i=0; i<this.amountrows; i++){
+			for(int j=0; j<this.amountcols; j++){
+				System.Console.Write($"{this[i,j]}");
+				System.Console.Write($"  ");
+				}
+			System.Console.WriteLine();
+			}
+		System.Console.WriteLine();
+		}
+
+	public void print() => show();
 
 	public static matrix product(matrix A, matrix B){
 		matrix C = new matrix(A.amountrows, B.amountcols);  //resulting matrix, A*B=C
@@ -125,13 +180,36 @@ public class matrix{
 
 	public matrix transpose(){
 		matrix trans = new matrix(this.amountcols, this.amountrows);
-		for(int i=0; i<this.amountrows; i++){
-			for(int j=0; j<this.amountcols; j++){
-				trans[j,i] = this[i,j];
+		for(int i=0; i<trans.amountrows; i++){
+			for(int j=0; j<trans.amountcols; j++){
+				trans[i,j] = this[j,i];
 				}
 			}
 		return trans;
 		}//transpose method
+
+	public static bool approx(double a,double b,double acc=1e-9,double eps=1e-9){
+		if(System.Math.Abs(a-b)<acc)return true;
+		if(System.Math.Abs(a-b)<(System.Math.Abs(a)+System.Math.Abs(b))*eps)return true;
+		return false;
+		}
+
+	public static bool compare(matrix A, matrix B){
+		if(A.amountrows != B.amountrows){
+			System.Console.WriteLine("Matrices must be of same dimensions");
+			return false;}
+		if(A.amountcols != B.amountcols){
+			System.Console.WriteLine("Matrices must be of same dimensions");
+			return false;}
+		for(int i=0; i<A.amountrows; i++){
+			for(int j=0; j<B.amountcols; j++){
+				if(approx(A[i,j], B[i,j])==false) return false;
+				}
+			}
+		return true;
+		}
+
+
 
 }//matrix class
 
@@ -154,8 +232,17 @@ public static class QRGS{
 		return (Q,R);
 		}//decomp function
 
-	public static vector solve(matrix Q, matrix R, vector b){
-		vector y = new vector(R.amountrows);
-		return y;
+	public static vector solve(matrix Q, matrix R, vector b){  //solve a system R*x=Qt*b, where Qt*b=y
+		matrix Qtrans = Q.transpose();
+		vector y = matrix.product(Qtrans, b);
+		vector x = new vector(y.size);
+		for(int i=x.size-1; i>=0; i--){
+			double sum = 0;
+			for(int k=i+1; k<x.size; k++){
+				sum = sum + R[i,k]*x[k];
+				}
+			x[i] = (1d/R[i,i])*(y[i] - sum);
+			}
+		return x;
 		}
 }//QRGS class
