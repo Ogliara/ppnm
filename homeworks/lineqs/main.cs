@@ -53,6 +53,18 @@ static class main{
 		Console.WriteLine($"Ax compared to b = {vector.compare(Ax,b)}");
 		Console.WriteLine();
 
+		//proper testing of det_tri
+		Console.WriteLine("Properly testing det_tri");
+		A = matrix.random(4,3);
+		Console.WriteLine("Matrix A");		
+		A.show();
+		(Q,R) = QRGS.decomp(A);
+		Console.WriteLine("Matrix R");		
+		R.show();
+		double detR = QRGS.det_tri(R);
+		Console.WriteLine($"Determinant of R is {detR}");
+		
+
 		return 0;
 	}//Main func
 }//main class

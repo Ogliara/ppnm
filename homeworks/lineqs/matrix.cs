@@ -245,4 +245,12 @@ public static class QRGS{
 			}
 		return x;
 		}
+
+	public static double det_tri(matrix R){
+		double det = 1;
+		for(int i=0; i<R.amountrows; i++){
+			det = det*R[i,i];
+			}
+		return det;
+		}
 }//QRGS class
