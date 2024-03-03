@@ -260,8 +260,19 @@ public static class QRGS{
 			}
 		int n = A.amountrows;
 		matrix inv = new matrix(n,n);
-		
+		//Have to solve n linear systems, each of n equations
+		//Ax_(i+1) = e_(i+1), for i=0,...,(n-1)
+		//The set of columns e_(i+1) forms the identity matrix
+		//The set of columns x_(i+1) forms the inverse of A
 
+		//To do: Solve the i'th system of equations, save x_(i+1) as the i'th col of inv, repeat for all i
+		(matrix Q, matrix R) = decomp(A);
+		for(int i=0; i<n; i++){
+			vector e = new vector(n);
+			e[i] = 1;  //all other elements are 0, since double defaults to 0
+			vector x = solve(Q, R, e);
+			inv[i] = x;
+			}
 		return inv;
 		}
 

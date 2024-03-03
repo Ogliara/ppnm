@@ -63,8 +63,23 @@ static class main{
 		R.show();
 		double detR = QRGS.det_tri(R);
 		Console.WriteLine($"Determinant of R is {detR}");
-		
-		matrix Rinv = QRGS.inverse(R);
+		Console.WriteLine();		
+
+		//proper testing of inverse
+		Console.WriteLine("Properly testing inverse");
+		n = 3;
+		A = matrix.random(n,n);
+		Console.WriteLine("Matrix A");
+		A.show();
+		matrix Ainv = QRGS.inverse(A);
+		Console.WriteLine("Inverse of matrix A");		
+		Ainv.show();
+		matrix AinvA = matrix.product(Ainv,A);
+		Console.WriteLine("Matrix Ainv*A");
+		AinvA.show();
+		id = matrix.identity(n);
+		Console.WriteLine($"Ainv*A compared to identity = {matrix.compare(AinvA,id)}");
+
 
 		return 0;
 	}//Main func
