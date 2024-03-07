@@ -8,6 +8,23 @@ public static class jacobi{
 	public static double c(double theta) => Math.Cos(theta);
 	public static double pow(double a, double b) => Math.Pow(a,b);
 
+	public static bool approx(double a,double b,double acc=1e-9,double eps=1e-9){
+		if(System.Math.Abs(a-b)<acc)return true;
+		if(System.Math.Abs(a-b)<(System.Math.Abs(a)+System.Math.Abs(b))*eps)return true;
+		return false;
+	}
+
+	public static bool istopzero(matrix A){
+		for(int i=0; i<A.amountrows; i++){
+			for(int j=0; j<A.amountcols; j++){
+				if(i<j && approx(A[i,j],0, 1e-4, 1e-4)==false){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	public static void timesJ(matrix A, int p, int q, double theta){
 		double st = s(theta);
 		double ct = c(theta);
@@ -42,6 +59,7 @@ public static class jacobi{
 		int n = A.amountcols;
 		matrix V = matrix.identity(n);
 		bool changed;
+		int counter = 0;
 		do{//This repeats as long as changed is equal to true
 			changed = false;
 			for(int p=0; p<n-1; p++)  //going only to n-1 to 'make space' for the qth col
@@ -53,21 +71,20 @@ public static class jacobi{
 					double st = s(theta);
 					double ct = c(theta);
 					double new_app = pow(ct,2)*app - 2*st*ct*apq + pow(st,2)*aqq;
-					double new_aqq = pow(st,2)*app - 2*st*ct*apq + pow(ct,2)*aqq;
-					if(new_app!=app || new_aqq!=aqq){
+					double new_aqq = pow(st,2)*app + 2*st*ct*apq + pow(ct,2)*aqq;
+					//if(approx(new_app,app)==false || approx(new_aqq,aqq)==false){
+					if(istopzero(A)==false){
+						counter++;
 						changed = true;
-						timesJ(A,p,q,theta);
 						Jtimes(A,p,q,theta);
+						timesJ(A,p,q,theta);
+						timesJ(V,p,q,theta); //This is to get all the eigenvectors
 					}
 				}
 		}while(changed == true);
+		//After this loop, V's cols are the eigenvectors
+		WriteLine($"Transformation counter = {counter}");
+		//A is now diagonalized
 		return V;
 	}
-
-
-
-
-
-
-
 }//jacobi class

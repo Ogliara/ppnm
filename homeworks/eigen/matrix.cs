@@ -140,6 +140,18 @@ public class matrix{
 
 	public void print() => show();
 
+	public static bool isdiag(matrix A){
+		for(int i=0; i<A.amountrows; i++){
+			for(int j=0; j<A.amountcols; j++){
+				if(i!=j && approx(A[i,j],0)==false){
+					return false;
+					}
+				}
+			}
+		return true;
+		}
+
+
 	public static matrix product(matrix A, matrix B){
 		matrix C = new matrix(A.amountrows, B.amountcols);  //resulting matrix, A*B=C
 		for(int i=0; i<C.amountrows; i++){
@@ -155,6 +167,11 @@ public class matrix{
 			}
 		return C;
 		}//product function
+
+	public static matrix operator*(matrix A, matrix B){
+			return product(A,B);
+			}
+
 
 	public static vector product(matrix A, vector b){ //product overload with vector b
 		vector c = new vector(b.size);  //resulting vector, A*b=c
