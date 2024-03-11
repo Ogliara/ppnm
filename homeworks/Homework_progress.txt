@@ -1,0 +1,5 @@
+Nr. | Homework | A | B | C | Sum |
+1   | LinEq    | 6 | 2 | - | 8   |
+2   | Eigen    | 6 | - | - | 6   |
+
+Total Points: 14
