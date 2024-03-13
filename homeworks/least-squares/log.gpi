@@ -1,0 +1,13 @@
+\
+	set terminal svg background "white" ;\
+	set out "fit.gnuplot.svg" ;\
+	set key right;\
+	set xlabel "x" ;\
+	set ylabel "y" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Fit" ;\
+	plot \
+		"Out.txt" using 1:2:3 with errorbars title "Data" \
+		,"Out.txt" using 1:4 with lines title "Fit" ;\
+

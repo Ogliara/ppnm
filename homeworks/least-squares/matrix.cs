@@ -183,7 +183,7 @@ public class matrix{
 
 
 	public static vector product(matrix A, vector b){ //product overload with vector b
-		vector c = new vector(b.size);  //resulting vector, A*b=c
+		vector c = new vector(A.amountrows);  //resulting vector, A*b=c
 		for(int i=0; i<c.size; i++){
 			double element = 0;
 			for(int j=0; j<c.size; j++){
@@ -301,5 +301,22 @@ public static class QRGS{
 			}
 		return inv;
 		}
+
+	public static vector lsfit(System.Func<double,double>[] fs, vector x, vector y, vector yerr){
+		int n = x.size;
+		int m = fs.Length;
+		matrix A = new matrix(n,m);
+		vector b = new vector(n);
+		for(int i=0; i<n; i++){
+			b[i] = y[i]/yerr[i];
+			for(int k=0; k<m; k++){
+				A[i,k] = fs[k](x[i])/yerr[i];
+			}
+		}
+		(matrix Q, matrix R) = decomp(A);
+		//vector c = new vector(m);
+		vector c = solve(Q,R,b);
+		return c;
+	}
 
 }//QRGS class
