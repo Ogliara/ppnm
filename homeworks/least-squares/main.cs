@@ -11,10 +11,6 @@ static class main{
 			if(words[0] == "-output") outfile=words[1];
 		}
 
-		if(infile==null){
-			WriteLine("Wrong filename argument");
-			return 1;
-		}
 
 		var instream = new System.IO.StreamReader(infile);
 		var outstream = new System.IO.StreamWriter(outfile, append:true);
@@ -41,12 +37,7 @@ static class main{
 
 
 		WriteLine();
-		WriteLine("----------     Testing     ----------");
-
-
-		var testfs = new System.Func<double,double>[] { z => 1.0, z => z, z => z*z };
-		for(int i=0; i<3; i++){WriteLine(testfs[i](3));}
-
+		WriteLine("----------     Testing QR on tall matrix     ----------");
 		matrix A = matrix.random(4,2);
 		WriteLine("Matrix A");
 		A.show();
@@ -65,7 +56,7 @@ static class main{
 		
 
 		WriteLine();
-		WriteLine("----------     Testing lsfit     ----------");
+		WriteLine("----------     Performing lsfit     ----------");
 		//Log functions, log ys, log yerrs
 		var lnfs = new System.Func<double,double>[] { t => 1.0, t => t };
 		vector lnys = new vector(y.size);
@@ -74,9 +65,12 @@ static class main{
 			lnys[i]=Math.Log(y[i]);
 			lnyerrs[i] = Math.Abs(yerr[i]/y[i]);
 		}
-		vector c = QRGS.lsfit(lnfs,x,lnys, lnyerrs);
-		WriteLine("Vector c for logarithmic fit");
+		(vector c, matrix sigma) = QRGS.lsfit(lnfs,x,lnys,lnyerrs);
+		WriteLine("Vector c for logarithmic fit (ln(a), -lambda)");
 		c.show();
+		WriteLine();
+		WriteLine("Covariance matrix sigma for logarithmic fit");
+		sigma.show();
 		WriteLine();
 
 		WriteLine("Actual ln(y) and fitted ln(y) values");
@@ -85,15 +79,22 @@ static class main{
 			fitlnys[i] = c[0]*lnfs[0](x[i]) + c[1]*lnfs[1](x[i]);
 			WriteLine($"{lnys[i]} +/- {lnyerrs[i]}, {fitlnys[i]}");
 		}
+		WriteLine();
 
+		//Calculating the half-life from fit
+		double lambda = c[1];
+		double lambda_err = Math.Sqrt(sigma[1,1]);
+		double halflife = Math.Log(2d)/(-c[1]);
+		double halflife_err = halflife*Math.Abs(lambda_err/lambda);
+		WriteLine($"Fitted half-life of ThX is found to be {halflife}+/-{halflife_err} days");
+		WriteLine("Modern value of the half-life is 3.631(2) days (source is National Institute of Health)");
+		WriteLine($"The fitted value over-estimates the half-life by {halflife-halflife_err-3.631} days");
 		
 		
-		//Trying to plot
+		//Sending plotting values to the proper file via outstream
 		for(int i=0; i<x.size; i++){
 			outstream.WriteLine($"{x[i]} {lnys[i]} {lnyerrs[i]} {fitlnys[i]}");
 		}
-
-
 
 
 		instream.Close();

@@ -186,7 +186,7 @@ public class matrix{
 		vector c = new vector(A.amountrows);  //resulting vector, A*b=c
 		for(int i=0; i<c.size; i++){
 			double element = 0;
-			for(int j=0; j<c.size; j++){
+			for(int j=0; j<b.size; j++){
 				element = element + A[i,j]*b[j];
 				}
 			c[i] = element;
@@ -302,7 +302,7 @@ public static class QRGS{
 		return inv;
 		}
 
-	public static vector lsfit(System.Func<double,double>[] fs, vector x, vector y, vector yerr){
+	public static (vector,matrix) lsfit(System.Func<double,double>[] fs, vector x, vector y, vector yerr){
 		int n = x.size;
 		int m = fs.Length;
 		matrix A = new matrix(n,m);
@@ -314,9 +314,10 @@ public static class QRGS{
 			}
 		}
 		(matrix Q, matrix R) = decomp(A);
-		//vector c = new vector(m);
 		vector c = solve(Q,R,b);
-		return c;
+		matrix Rinv = inverse(R);
+		matrix sigma = Rinv*Rinv.transpose();
+		return (c,sigma);
 	}
 
 }//QRGS class

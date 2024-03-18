@@ -1,10 +1,12 @@
-fit.gnuplot.svg: Out.txt Makefile
+default: fit.gnuplot.svg fit_vals.txt
+
+fit.gnuplot.svg: fit_vals.txt
 	echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
 		set key right;\
 		set xlabel "x" ;\
-		set ylabel "y" ;\
+		set ylabel "ln(y)" ;\
 		set tics out ;\
 		set grid ;\
 		set title "Fit" ;\
@@ -13,10 +15,9 @@ fit.gnuplot.svg: Out.txt Makefile
 			,"$<" using 1:4 with lines title "Fit" ;\
 	' | tee log.gpi | gnuplot
 
-
-Out.txt: main.exe
-	rm -f Out.txt
-	mono $< -input:data.txt -output:Out.txt
+fit_vals.txt: main.exe
+	rm -f fit_vals.txt
+	mono $< -input:data.txt -output:fit_vals.txt !>Out.txt
 
 main.exe: main.cs matrix.dll
 	mcs -target:exe -reference:matrix.dll -out:$@ $<
@@ -26,5 +27,5 @@ matrix.dll: matrix.cs #Note: The matrix.cs here is a copy from /eigen. Merge lat
 
 PHONEY: clean
 clean:
-	rm -f matrix.dll main.exe Out.txt fit.gnuplot.svg
+	rm -f matrix.dll main.exe fit_vals.txt fit.gnuplot.svg log.gpi Out.txt
 
