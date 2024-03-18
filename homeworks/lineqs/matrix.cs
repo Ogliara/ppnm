@@ -1,3 +1,5 @@
+//Version 18.03.2024
+
 public class vector{
 	public double[] data;
 
@@ -11,6 +13,15 @@ public class vector{
 	public vector(int n){
 		data = new double[n];
 		}
+
+	public void append(double element){
+		double[] newdata = new double[size+1];
+		for(int i=0; i<size; i++){
+			newdata[i] = data[i];
+		}
+		newdata[size] = element;
+		data = newdata;
+	}
 
 	public static vector random(int n, int range=10){
 		var rnd = new System.Random();
@@ -140,6 +151,18 @@ public class matrix{
 
 	public void print() => show();
 
+	public static bool isdiag(matrix A){
+		for(int i=0; i<A.amountrows; i++){
+			for(int j=0; j<A.amountcols; j++){
+				if(i!=j && approx(A[i,j],0)==false){
+					return false;
+					}
+				}
+			}
+		return true;
+		}
+
+
 	public static matrix product(matrix A, matrix B){
 		matrix C = new matrix(A.amountrows, B.amountcols);  //resulting matrix, A*B=C
 		for(int i=0; i<C.amountrows; i++){
@@ -156,11 +179,16 @@ public class matrix{
 		return C;
 		}//product function
 
+	public static matrix operator*(matrix A, matrix B){
+			return product(A,B);
+			}
+
+
 	public static vector product(matrix A, vector b){ //product overload with vector b
-		vector c = new vector(b.size);  //resulting vector, A*b=c
+		vector c = new vector(A.amountrows);  //resulting vector, A*b=c
 		for(int i=0; i<c.size; i++){
 			double element = 0;
-			for(int j=0; j<c.size; j++){
+			for(int j=0; j<b.size; j++){
 				element = element + A[i,j]*b[j];
 				}
 			c[i] = element;
@@ -208,9 +236,6 @@ public class matrix{
 			}
 		return true;
 		}
-
-
-
 }//matrix class
 
 
@@ -275,5 +300,5 @@ public static class QRGS{
 			}
 		return inv;
 		}
-
 }//QRGS class
+

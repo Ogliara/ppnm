@@ -1,3 +1,5 @@
+//Version 18.03.2024
+
 public class vector{
 	public double[] data;
 
