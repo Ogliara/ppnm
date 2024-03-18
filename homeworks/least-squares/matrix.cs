@@ -234,9 +234,6 @@ public class matrix{
 			}
 		return true;
 		}
-
-
-
 }//matrix class
 
 
@@ -301,23 +298,5 @@ public static class QRGS{
 			}
 		return inv;
 		}
-
-	public static (vector,matrix) lsfit(System.Func<double,double>[] fs, vector x, vector y, vector yerr){
-		int n = x.size;
-		int m = fs.Length;
-		matrix A = new matrix(n,m);
-		vector b = new vector(n);
-		for(int i=0; i<n; i++){
-			b[i] = y[i]/yerr[i];
-			for(int k=0; k<m; k++){
-				A[i,k] = fs[k](x[i])/yerr[i];
-			}
-		}
-		(matrix Q, matrix R) = decomp(A);
-		vector c = solve(Q,R,b);
-		matrix Rinv = inverse(R);
-		matrix sigma = Rinv*Rinv.transpose();
-		return (c,sigma);
-	}
-
 }//QRGS class
+

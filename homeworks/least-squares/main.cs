@@ -65,7 +65,7 @@ static class main{
 			lnys[i]=Math.Log(y[i]);
 			lnyerrs[i] = Math.Abs(yerr[i]/y[i]);
 		}
-		(vector c, matrix sigma) = QRGS.lsfit(lnfs,x,lnys,lnyerrs);
+		(vector c, matrix sigma) = leastsquares.lsfit(lnfs,x,lnys,lnyerrs);
 		WriteLine("Vector c for logarithmic fit (ln(a), -lambda)");
 		c.show();
 		WriteLine();
