@@ -25,7 +25,7 @@ main.exe: main.cs matrix.dll ls.dll
 ls.dll: leastsquares.cs matrix.dll
 	mcs -target:library -reference:matrix.dll -out:$@ $<
 
-matrix.dll: matrix.cs #Note: The matrix.cs here is a copy from /eigen. Merge later.
+matrix.dll: matrix.cs
 	mcs -target:library -out:$@ $<
 
 PHONEY: clean
