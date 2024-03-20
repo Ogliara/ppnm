@@ -2,7 +2,7 @@ using System;
 using static System.Console;
 public static class main{
 	public static void Main(){
-		//Part a) Linear Splines
+	//Part a) Linear Splines
 		WriteLine("----- Linear Splines -----");
 		vector x = new vector(10);
 		vector y = new vector(x.size);
@@ -12,9 +12,19 @@ public static class main{
 			y[i] = Math.Cos(x[i]);
 			WriteLine($"{x[i]}  {y[i]}");
 		}
-		double z = 1.4;
-		int inter = linsplin.binsearch(x,z);
+		double z = 9;
+		int inter = linspline.binsearch(x,z);
 		WriteLine();
 		WriteLine($"z={z} -> i={inter} through binary search through x");
+		
+		linspline testspline = new linspline(x,y);
+		WriteLine(testspline.integ(Math.PI/2d));
+		testspline.linterp_ys.show();
+		for(int i=0; i<x.size; i++){
+			Error.WriteLine($"{x[i]} {y[i]} {testspline.linterp_ys[i]} {testspline.integ_ys[i]}");
+		}
+
 	}
 }
+
+
