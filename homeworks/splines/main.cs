@@ -21,9 +21,11 @@ public static class main{
 		WriteLine(testspline.integ(Math.PI/2d));
 		testspline.linterp_ys.show();
 		for(int i=0; i<x.size; i++){
-			Error.WriteLine($"{x[i]} {y[i]} {testspline.linterp_ys[i]} {testspline.integ_ys[i]}");
+			Error.WriteLine($"{x[i]} {y[i]} {testspline.zs[i]} {testspline.linterp_ys[i]} {testspline.integ_ys[i]}");
 		}
-
+		for(int i=x.size; i<testspline.zs.size; i++){
+			Error.WriteLine($"NULL NULL {testspline.zs[i]} {testspline.linterp_ys[i]} {testspline.integ_ys[i]}");
+		}
 	}
 }
 

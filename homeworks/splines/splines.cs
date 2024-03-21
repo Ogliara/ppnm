@@ -4,9 +4,10 @@ using System;
 public class linspline{
 	//Vector x and y are data points, while p is a vector of all the pi-values needed for splines
 	vector x,y,p;
-	public vector linterp_ys, integ_ys;
+	//Vector zs holds a linspace for z-values, linterp_ys and integ_ys are spline values and integrant values
+	public vector zs, linterp_ys, integ_ys;
 	
-	public linspline(vector xs, vector ys){//constructor
+	public linspline(vector xs, vector ys, int N=100){//constructor
 		x = xs;
 		y = ys;
 		p = new vector(x.size);
@@ -18,11 +19,13 @@ public class linspline{
 			}
 			p[i] = dy/dx;
 		}
-		linterp_ys = new vector(x.size);
-		integ_ys = new vector (x.size);
-		for(int i=0; i<linterp_ys.size; i++){
-			linterp_ys[i] = this.linterp(x[i]);
-			integ_ys[i] = this.integ(x[i]);
+		zs = new vector(N);
+		linterp_ys = new vector(zs.size);
+		integ_ys = new vector (zs.size);
+		for(int i=0; i<zs.size; i++){
+			zs[i] = x[0] + i*(x[x.size-1]-x[0])/Convert.ToDouble(N);
+			linterp_ys[i] = this.linterp(zs[i]);
+			integ_ys[i] = this.integ(zs[i]);
 		}
 	}
 

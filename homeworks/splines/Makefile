@@ -10,8 +10,8 @@ splines.gnuplot.svg: plotdata.txt Makefile
 		set title "Splines" ;\
 		plot \
 			"$<" using 1:2 title "Data" \
-			,"$<" using 1:3 with lines title "Linear Splines" \
-			,"$<" using 1:4 with lines title "Linear Anti-Derivative" ;\
+			,"$<" using 3:4 with lines title "Linear Splines" \
+			,"$<" using 3:5 with lines title "Linear Anti-Derivative" ;\
 	' | gnuplot
 
 plotdata.txt: main.exe
