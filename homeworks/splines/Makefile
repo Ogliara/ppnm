@@ -11,7 +11,9 @@ splines.gnuplot.svg: plotdata.txt Makefile
 		plot \
 			"$<" using 1:2 title "Data" \
 			,"$<" using 3:4 with lines title "Linear Splines" \
-			,"$<" using 3:5 with lines title "Linear Anti-Derivative" ;\
+			,"$<" using 3:5 with lines title "Linear Anti-Derivative" \
+			,"$<" using 3:6 with lines title "Quadratic Splines" \
+			,"$<" using 3:7 with lines title "Quadratic Derived" ;\
 	' | gnuplot
 
 plotdata.txt: main.exe

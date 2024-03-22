@@ -1,4 +1,4 @@
-//Version 18.03.2024
+//Version 22.03.2024
 
 public class vector{
 	public double[] data;
@@ -93,6 +93,31 @@ public class vector{
 			}
 		return true;
 		}
+
+	public static vector linspace(int N, double startval, double endval){
+		vector xs = new vector(N);
+		for(int i=0; i<N; i++){
+			xs[i] = startval + i*(endval-startval)/System.Convert.ToDouble(N);
+			}
+		return xs;
+		}//linspace
+	
+	public static int binsearch(vector x, double z){
+		int i = 0;
+		int j = x.size - 1;
+		//If z isn't contained in x, throw an exception
+		if(z<x[i] || z>x[j]){
+			throw new System.ArgumentException("z is not contained in x. Choose new z");
+		}
+		//Continue to cut away the half of all indicies that z isn't contained in
+		//Stop when we have x[i]<z<x[i+1], where i+1=j
+		while(j-i>1){
+			int mid = (i+j)/2;
+			if(z > x[mid]){i = mid;}
+			else{j=mid;}
+		}
+		return i;
+		}//binsearch
 }//vector class
 
 public class matrix{
