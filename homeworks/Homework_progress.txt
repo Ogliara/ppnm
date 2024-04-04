@@ -2,5 +2,6 @@ Nr. | Homework | A | B | C | Sum |
 1   | LinEq    | 6 | 3 | - | 9   |
 2   | Eigen    | 6 | - | - | 6   |
 3   | Ls-fit   | 6 | 3 | - | 9   |
+4   | Splines  | 6 | 3 | - | 9   |
 
-Total Points: 24
+Total Points: 33

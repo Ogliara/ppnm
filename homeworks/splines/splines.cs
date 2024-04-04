@@ -27,24 +27,7 @@ public class linspline{
 			integ_ys[i] = this.integ(zs[i]);
 		}
 	}
-/* Commenting this out, since I put a copy of it in the matrix.cs file under vector
-	public static int binsearch(vector x, double z){
-		int i = 0;
-		int j = x.size - 1;
-		//If z isn't contained in x, throw an exception
-		if(z<x[i] || z>x[j]){
-			throw new ArgumentException("z is not contained in x. Choose new z");
-		}
-		//Continue to cut away the half of all indicies that z isn't contained in
-		//Stop when we have x[i]<z<x[i+1], where i+1=j
-		while(j-i>1){
-			int mid = (i+j)/2;
-			if(z > x[mid]){i = mid;}
-			else{j=mid;}
-		}
-		return i;
-	}//binsearch
-*/
+
 	public double linterp(double z){
 		int i = vector.binsearch(x,z);
 		return y[i] + p[i]*(z-x[i]);
@@ -66,7 +49,7 @@ public class linspline{
 public class quadspline{
 	//Vectors x and y are for data, b, c and p are coefficents for the spline
 	vector x,y,b,c,p;
-	public vector zs, quadterp_ys, derived_ys;
+	public vector zs, quadterp_ys, derived_ys, integral_ys;
 
 	public quadspline(vector xs, vector ys, int N=100){//constructor
 		x = xs;
@@ -107,10 +90,12 @@ public class quadspline{
 		//Make the zs, spline values, derived and integral values
 		zs = vector.linspace(N,x[0],x[x.size-1]);
 		quadterp_ys = new vector(zs.size);
-		derived_ys = new vector(zs.size);		
+		derived_ys = new vector(zs.size);
+		integral_ys = new vector(zs.size);	
 		for(int i=0; i<zs.size; i++){
 			quadterp_ys[i] = quadterp(zs[i]);
 			derived_ys[i] = derived(zs[i]);
+			integral_ys[i] = integ(zs[i]);
 		}
 
 	}
@@ -124,5 +109,16 @@ public class quadspline{
 	public double derived(double z){
 		int i = vector.binsearch(x,z);
 		return b[i] + 2*c[i]*z - 2*c[i]*x[i];
+	}
+
+	public double integ(double z){
+		int i = vector.binsearch(x,z);
+		double sum = 0;
+		for(int j=0; j<i; j++){
+			double newcomp = -1d/6d*(x[j]-x[j+1]) * (2*x[j]*x[j]*c[j] - 3*x[j]*b[j] - 4*x[j]*c[j]*x[j+1] + 3*b[j]*x[j+1] + 2*c[j]*x[j+1]*x[j+1] + 6*y[j]);
+			sum = sum + newcomp;
+		}
+		sum = sum + (-1d/6d*(x[i]-z) * (2*x[i]*x[i]*c[i] - 3*x[i]*b[i] - 4*x[i]*c[i]*z + 3*b[i]*z + 2*c[i]*z*z + 6*y[i]));
+		return sum;
 	}
 }//quadspline class

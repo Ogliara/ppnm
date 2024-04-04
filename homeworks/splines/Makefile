@@ -1,4 +1,6 @@
-splines.gnuplot.svg: plotdata.txt Makefile
+default: linspline.gnuplot.svg quadspline.gnuplot.svg
+
+linspline.gnuplot.svg: plotdata.txt Makefile
 	echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
@@ -7,13 +9,28 @@ splines.gnuplot.svg: plotdata.txt Makefile
 		set ylabel "y" ;\
 		set tics out ;\
 		set grid ;\
-		set title "Splines" ;\
+		set title "Linear Splines" ;\
 		plot \
 			"$<" using 1:2 title "Data" \
 			,"$<" using 3:4 with lines title "Linear Splines" \
-			,"$<" using 3:5 with lines title "Linear Anti-Derivative" \
+			,"$<" using 3:5 with lines title "Linear Anti-Derivative" ;\
+	' | gnuplot
+
+quadspline.gnuplot.svg: plotdata.txt Makefile
+	echo '\
+		set terminal svg background "white" ;\
+		set out "$@" ;\
+		set key right ;\
+		set xlabel "x" ;\
+		set ylabel "y" ;\
+		set tics out ;\
+		set grid ;\
+		set title "Quadratic Splines" ;\
+		plot \
+			"$<" using 1:2 title "Data" \
 			,"$<" using 3:6 with lines title "Quadratic Splines" \
-			,"$<" using 3:7 with lines title "Quadratic Derived" ;\
+			,"$<" using 3:7 with lines title "Quadratic Derived" \
+			,"$<" using 3:8 with lines title "Quadratic Anti-Derived" ;\
 	' | gnuplot
 
 plotdata.txt: main.exe
@@ -30,4 +47,4 @@ matrix.dll: matrix.cs
 
 PHONEY: clean
 clean:
-	rm -f *.dll *.exe Out.txt plotdata.txt splines.gnuplot.svg
+	rm -f *.dll *.exe Out.txt plotdata.txt *.gnuplot.svg

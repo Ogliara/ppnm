@@ -18,12 +18,12 @@ public static class main{
 
 		for(int i=0; i<x.size; i++){
 			Error.Write($"{x[i]} {y[i]} {spline_lin.zs[i]} {spline_lin.linterp_ys[i]} {spline_lin.integ_ys[i]} ");
-			Error.Write($"{spline_quad.quadterp_ys[i]}, {spline_quad.derived_ys[i]}");
+			Error.Write($"{spline_quad.quadterp_ys[i]}, {spline_quad.derived_ys[i]}, {spline_quad.integral_ys[i]}");
 			Error.WriteLine("");
 		}
 		for(int i=x.size; i<spline_lin.zs.size; i++){
 			Error.Write($"NULL NULL {spline_lin.zs[i]} {spline_lin.linterp_ys[i]} {spline_lin.integ_ys[i]} ");
-			Error.Write($"{spline_quad.quadterp_ys[i]}, {spline_quad.derived_ys[i]}");
+			Error.Write($"{spline_quad.quadterp_ys[i]}, {spline_quad.derived_ys[i]}, {spline_quad.integral_ys[i]}");
 			Error.WriteLine("");
 		}
 	}
