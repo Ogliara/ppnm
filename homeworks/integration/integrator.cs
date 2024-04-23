@@ -26,4 +26,12 @@ public static class integrator{
 				integrate(f,(a+b)/2,b,delta/Sqrt(2),epsilon,f3,f4);
 		}
 	}//integrate function
+
+	public static double erf(double z){
+		Func<double,double> func1 = t => Exp(-Pow(t,2));
+		Func<double,double> func2 = t => Exp(-Pow((z+(1-t)/t),2))/t/t;
+		if(z<0){return -erf(-z);}
+		if(z>0 && z<1){return 2/Sqrt(PI)*integrate(func1,0,z);}
+		else{return 1-2/Sqrt(PI)*integrate(func2,0,1);}
+	}
 }//integrator class

@@ -4,5 +4,6 @@ Nr. | Homework | A | B | C | Sum |
 3   | Ls-fit   | 6 | 3 | - | 9   |
 4   | Splines  | 6 | 3 | - | 9   |
 5   | ODE      | 6 | - | - | 6   |
+6   | Integrate| 6 | - | - | 6   |
 
-Total Points: 39
+Total Points: 45

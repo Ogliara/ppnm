@@ -1,0 +1,12 @@
+\
+	set terminal svg background "white" ;\
+	set out "fit.gnuplot.svg" ;\
+	set key right;\
+	set xlabel "z" ;\
+	set ylabel "erf(z)" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Error Function" ;\
+	plot \
+		"plotdata.txt" using 1:2 notitle ;\
+

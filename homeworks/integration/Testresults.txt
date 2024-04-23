@@ -1,0 +1,24 @@
+--- Testing integral of sqrt(x) from 0 to 1. ---
+0.666953909054655 is within accuracy goals of 2/3.
+
+--- Testing integral of 1/sqrt(x) from 0 to 1. ---
+1.99996150007805 is within accuracy goals of 2.
+
+--- Testing integral of 4*sqrt(1-x^2) from 0 to 1. ---
+3.14183457802727 is within accuracy goals of pi.
+
+--- Testing integral of ln(x)/sqrt(x) from 0 to 1. ---
+-3.99991705899915 is within accuracy goals of -4.
+
+--- Comparing error function approximations to exact values ---
+z | approx | exact
+-2 | -0.994900318508938 | -0.99532
+-1 | -0.843921292239978 | -0.84270
+-0.6 | -0.603850136707248 | -0.60386
+-0.1 | -0.112462893687391 | -0.11246
+0 | 9.34368451244172E-06 | 0
+0.1 | 0.112462893687391 | 0.11246
+0.6 | 0.603850136707248 | 0.60386
+1 | 0.843921292239978 | 0.84270
+2 | 0.994900318508938 | 0.99532
+These results are very similar to plot exercise.
