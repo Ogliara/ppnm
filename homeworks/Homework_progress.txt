@@ -5,6 +5,6 @@ Nr. | Homework | A | B | C | Sum |
 4   | Splines  | 6 | 3 | - | 9   |
 5   | ODE      | 6 | - | - | 6   |
 6   | Integrate| 6 | - | - | 6   |
-7   | MC Integ | 6 | - | - | 6   |
+7   | MC Integ | 6 | 3 | - | 9   |
 
-Total Points: 51
+Total Points: 54
