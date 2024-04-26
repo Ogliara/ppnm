@@ -10,7 +10,8 @@ plot.gnuplot.svg: plotdata.txt Makefile
 		set grid ;\
 		set title "Error as Function of N" ;\
 		plot \
-			"$<" using 1:2 with linespoint pointtype 2 title "Estimated Error" \
+			"$<" using 1:2 with linespoint pointtype 2 title "Estimated Error, Plain" \
+			,"$<" using 1:4 with linespoint pointtype 2 title "Estimated Error, LowDis" \
 			,"$<" using 1:3 with linespoint pointtype 2 title "Actual Error" ;\
 	' | tee log.gpi | gnuplot
 

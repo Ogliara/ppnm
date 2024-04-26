@@ -16,7 +16,7 @@ public static class main{
 
 		(double val_uc, double err_uc) = montecarlo.plain(f_uc, a_uc, b_uc, N_uc);
 		
-		WriteLine($"Value of integral of unit circle = {val_uc} +/- {err_uc} when N = {N_uc}.");
+		WriteLine($"Value of integral of unit circle via plain = {val_uc} +/- {err_uc} when N = {N_uc}.");
 		
 		WriteLine("Looking at the plot, the actual error doesn't go as 1/sqrt(N), but it does converge towards a value - 0.08 in this case.");
 
@@ -37,11 +37,31 @@ public static class main{
 		WriteLine($"Value of long integral = {val_long} +/- {err_long} when N = {N_long}.");
 
 		
+		WriteLine("----- Part b) -----");
+		double test = 7.5;
+		WriteLine($"test = {test}, test modulo 2 = {test % 2}");
+		WriteLine($"Base 10 Corput of 6 = {montecarlo.corput(6,10)}");
+		WriteLine($"Base 100 Corput of 6 = {montecarlo.corput(6,100)}");
+		WriteLine($"Base 6 Corput of 6 = {montecarlo.corput(6,6)}");
+
+		vector xstest = new vector(2);
+		vector xstest2 = new vector(2);
+		for(int i=0; i<100; i++){
+			montecarlo.halton(i,2,xstest);
+			montecarlo.additive(i,2,xstest2);
+			WriteLine($"{xstest[0]} {xstest[1]} {xstest2[0]} {xstest2[1]}");
+		}
+				
+		(double val_uc2, double err_uc2) = montecarlo.lowdis(f_uc, a_uc, b_uc, N_uc);
+		
+		WriteLine($"Value of integral of unit circle via lowdis = {val_uc2} +/- {err_uc2} when N = {N_uc}.");
+
 
 		//Plotdata.
 		for(int N=100; N<10000001; N*=10){
 			(val_uc, err_uc) = montecarlo.plain(f_uc, a_uc, b_uc, N);
-			Error.WriteLine($"{N} {err_uc} {Abs(PI - val_uc)}");
+			(val_uc2, err_uc2) = montecarlo.plain(f_uc, a_uc, b_uc, N);
+			Error.WriteLine($"{N} {err_uc} {Abs(PI - val_uc)} {err_uc2}");
 		}
 
 	}//Main func

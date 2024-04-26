@@ -9,6 +9,7 @@
 	set grid ;\
 	set title "Error as Function of N" ;\
 	plot \
-		"plotdata.txt" using 1:2 with linespoint pointtype 2 title "Estimated Error" \
+		"plotdata.txt" using 1:2 with linespoint pointtype 2 title "Estimated Error, Plain" \
+		,"plotdata.txt" using 1:4 with linespoint pointtype 2 title "Estimated Error, LowDis" \
 		,"plotdata.txt" using 1:3 with linespoint pointtype 2 title "Actual Error" ;\
 

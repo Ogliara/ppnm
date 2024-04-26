@@ -1,4 +1,4 @@
-//Version 23.04.2024
+//Version 26.04.2024
 
 public class vector{
 	public double[] data;
@@ -68,6 +68,15 @@ public class vector{
 		vector newvec = new vector(v.size);
 		for(int i=0; i<v.size; i++){
 			newvec[i] = v[i]*a;
+			}
+		return newvec;
+		}
+
+	public static vector operator*(vector v, vector u){
+		if(v.size != u.size){throw new System.ArgumentException("Vectors are not the same size.");}
+		vector newvec = new vector(v.size);
+		for(int i=0; i<v.size; i++){
+			newvec[i] = v[i]*u[i];
 			}
 		return newvec;
 		}
