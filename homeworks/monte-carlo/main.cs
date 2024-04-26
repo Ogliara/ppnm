@@ -20,6 +20,23 @@ public static class main{
 		
 		WriteLine("Looking at the plot, the actual error doesn't go as 1/sqrt(N), but it does converge towards a value - 0.08 in this case.");
 
+		
+		WriteLine("----- Calculating Long Integral -----");
+		Func<vector,double> f_long = x => Pow(1/PI,3) * Pow( 1-Cos(x[0])*Cos(x[1])*Cos(x[2]) , -1 );
+
+		vector a_long = new vector(3);
+		vector b_long = new vector(3);
+		for(int i=0; i<a_long.size; i++){
+			a_long[i] = 0;
+			b_long[i] = PI;
+		}
+		int N_long = 10000;
+
+		(double val_long, double err_long) = montecarlo.plain(f_long, a_long, b_long, N_long);
+
+		WriteLine($"Value of long integral = {val_long} +/- {err_long} when N = {N_long}.");
+
+		
 
 		//Plotdata.
 		for(int N=100; N<10000001; N*=10){

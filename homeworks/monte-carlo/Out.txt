@@ -1,2 +1,4 @@
-Value of integral of unit circle = 3.04623607155984 +/- 0.0114399525022809 when N = 10000.
+Value of integral of unit circle = 3.06593217034995 +/- 0.0113433127359334 when N = 10000.
 Looking at the plot, the actual error doesn't go as 1/sqrt(N), but it does converge towards a value - 0.08 in this case.
+----- Calculating Long Integral -----
+Value of long integral = 1.41094770695626 +/- 0.0636188651389241 when N = 10000.
