@@ -6,5 +6,6 @@ Nr. | Homework | A | B | C | Sum |
 5   | ODE      | 6 | - | - | 6   |
 6   | Integrate| 6 | - | - | 6   |
 7   | MC Integ | 6 | 3 | - | 9   |
+8   | Roots    | 6 | - | - | 6   |
 
-Total Points: 54
+Total Points: 60

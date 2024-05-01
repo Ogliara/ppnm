@@ -1,9 +1,34 @@
 ----- DEBUGGING, 1 DIMENSION -----
 fs_debug[0](x0s_debug) = 9.
 Debugging root = -3.5. fs_debug[0](root) = 0.
+
 ----- DEBUGGING, 2 DIMENSIONS -----
 fs_debug2[0](x0s_debug2) = -1.
 fs_debug[1](x0s_debug2) = 1.
 Debugging root2 = (-3.5,-2.54166666674945).
 fs_debug2[0](root2) = 0.
 fs_debug2[1](root2) = -4.96704899433098E-10.
+
+----- Rosenbrock's Valley Function -----
+Gradient is 2*x[0] - 2 + 400*(Pow(x[0],3) - x[1]*x[0]) and 200*(x[1] - Pow(x[0],2)).
+Initial Guess
+1.5
+1.5
+fs_rb[0](x0s_rb) = 451.
+fs_rb[1](x0s_rb) = -150.
+Rosenbrock root = (1.00000000588538,1.00000001173485).
+fs_rb[0](root_rb) = 2.61389185851613E-08.
+fs_rb[1](root_rb) = -7.18407555666545E-09.
+Root found at 1.00000000588538,1.00000001173485.
+
+----- Himmelblau's Function -----
+Gradient is 4*(Pow(x[0],3) + x[0]*x[1] - 11) + 2*(x[0] + Pow(x[1],2) - 7) and 2*(Pow(x[0],2) + x[1] - 11) + 4*x[1]*(x[0] + Pow(x[1],2) - 7).
+Initial Guess
+2
+3
+fs_hb[0](x0s_hb) = 20.
+fs_hb[1](x0s_hb) = 40.
+Himmelblau root = (1.8123394943109,2.49657069039584).
+fs_hb[0](root_hb) = 6.78546996368823E-10.
+fs_hb[1](root_hb) = 8.46202929949413E-09.
+Root found at 1.8123394943109,2.49657069039584.
