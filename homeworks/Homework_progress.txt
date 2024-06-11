@@ -7,5 +7,6 @@ Nr. | Homework | A | B | C | Sum |
 6   | Integrate| 6 | - | - | 6   |
 7   | MC Integ | 6 | 3 | - | 9   |
 8   | Roots    | 6 | - | - | 6   |
+9   | Mini     | 6 | - | - | 6   |
 
-Total Points: 60
+Total Points: 66

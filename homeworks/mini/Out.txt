@@ -1,0 +1,50 @@
+----- DEBUGGING -----
+Debugging function is f(x) = 47*Pow(x[0],2) + 3*Exp(x[1]) + 7.
+
+Initial guess, x0
+37
+-4
+
+f(x0) = 64350.0549469167.
+
+Solution, x
+-7.41227115623466E-09
+-9.00290293230077
+
+f(x) = 7.0003691562198.
+
+Loop count = 2.
+
+----- ROSENBROCK'S VALLEY FUNCTION -----
+Valley function is f(x) = Pow((1-x[0]),2) + 100*Pow((x[1]-Pow(x[0],2)),2).
+
+Initial guess, x0
+45
+137
+
+f(x0) = 356456336.
+
+Solution, x
+1.00000971742033
+1.00001934890359
+
+f(x) = 9.51683996165066E-11.
+
+Loop count = 141.
+
+----- HIMMELBLAU'S FUNCTION -----
+Himmel function is f(x) = Pow(Pow(x[0],2)+x[1]-11,2) + Pow(x[0]+Pow(x[1],2)-7,2).
+
+Initial guess, x0
+265
+47
+
+f(x0) = 4942694210.
+
+Solution, x
+3.58442831588892
+-1.84812653433209
+
+f(x) = 3.33453799347078E-14.
+
+Loop count = 15.

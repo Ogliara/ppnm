@@ -3,7 +3,7 @@ using static System.Math;
 using static System.Console;
 
 public static class mini{
-	public static vector newton(Func<vector,double> phi, vector x, double acc=1e-3){
+	public static (vector,int) newton(Func<vector,double> phi, vector x, double acc=1e-3){
 		int loop_count = 0;
 		do{
 			//Make gradient, check condition.
@@ -27,16 +27,16 @@ public static class mini{
 			x = x + lambda*delta_x;
 			//Break loop if convergence can't be achieved.
 			loop_count += 1;
-			if(loop_count > 1000) break;
+			if(loop_count >= 100000) break;
 		}while(true);
-		return x;
+		return (x, loop_count);
 	}//newton function
 
 
 	public static vector gradient(Func<vector,double> phi, vector x){
 		vector grad = new vector(x.size);
 		for(int i=0; i<x.size; i++){
-			double dx = Abs(x[i])*Pow(2,-26);
+			double dx = Max(Abs(x[i]),1)*Pow(2,-26);
 			vector x_step = x.copy();
 			x_step[i] = x_step[i] + dx;
 			grad[i] = (phi(x_step) - phi(x)) / dx;
@@ -48,7 +48,7 @@ public static class mini{
 		matrix hess = new matrix(x.size,x.size);
 		vector grad = gradient(phi, x);
 		for(int i=0; i<x.size; i++){
-			double dxi = Abs(x[i])*Pow(2,-26);
+			double dxi = Max(Abs(x[i]),1)*Pow(2,-13); //Works way better than -26 for some reason.
 			vector x_step = x.copy();
 			x_step[i] = x_step[i] + dxi;
 			vector grad_step = gradient(phi, x_step);
