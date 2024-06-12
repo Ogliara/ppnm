@@ -8,5 +8,6 @@ Nr. | Homework | A | B | C | Sum |
 7   | MC Integ | 6 | 3 | - | 9   |
 8   | Roots    | 6 | - | - | 6   |
 9   | Mini     | 6 | - | - | 6   |
+10  | Annie    | 6 | - | - | 6   |
 
-Total Points: 66
+Total Points: 72
