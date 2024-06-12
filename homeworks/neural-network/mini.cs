@@ -38,7 +38,7 @@ public static class mini{
 	public static vector gradient(Func<vector,double> phi, vector x){
 		vector grad = new vector(x.size);
 		for(int i=0; i<x.size; i++){
-			double dx = Max(Abs(x[i]),1)*Pow(2,-26);
+			double dx = Max(Abs(x[i]),1)*Pow(2,-13); //Changed from -26.
 			vector x_step = x.copy();
 			x_step[i] = x_step[i] + dx;
 			grad[i] = (phi(x_step) - phi(x)) / dx;

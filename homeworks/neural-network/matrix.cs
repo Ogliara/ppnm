@@ -1,4 +1,4 @@
-//Version 11.06.2024
+//Version 12.06.2024
 
 public class vector{
 	public double[] data;
@@ -23,11 +23,11 @@ public class vector{
 		data = newdata;
 	}
 
-	public static vector random(int n, int range=10){
+	public static vector random(int n, double min=0, double max=1){
 		var rnd = new System.Random();
 		vector v = new vector(n);
 		for(int i=0; i<n; i++){
-			v[i] = rnd.NextDouble()*range;
+			v[i] = rnd.NextDouble() * (max-min) + min;
 			}
 		return v;
 		}
