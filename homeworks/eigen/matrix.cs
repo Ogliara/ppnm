@@ -1,4 +1,4 @@
-//Version 18.03.2024
+//Version 12.06.2024
 
 public class vector{
 	public double[] data;
@@ -23,11 +23,11 @@ public class vector{
 		data = newdata;
 	}
 
-	public static vector random(int n, int range=10){
+	public static vector random(int n, double min=0, double max=1){
 		var rnd = new System.Random();
 		vector v = new vector(n);
 		for(int i=0; i<n; i++){
-			v[i] = rnd.NextDouble()*range;
+			v[i] = rnd.NextDouble() * (max-min) + min;
 			}
 		return v;
 		}
@@ -72,6 +72,32 @@ public class vector{
 		return newvec;
 		}
 
+	public static vector operator*(double a, vector v){
+		vector newvec = v*a;
+		return newvec;
+		}
+
+	public static vector operator*(vector v, vector u){
+		if(v.size != u.size){throw new System.ArgumentException("Vectors are not the same size.");}
+		vector newvec = new vector(v.size);
+		for(int i=0; i<v.size; i++){
+			newvec[i] = v[i]*u[i];
+			}
+		return newvec;
+		}
+
+	public static vector operator+(vector v, vector u){
+		vector newvec = new vector(v.size);
+		if(v.size != u.size){
+			System.Console.WriteLine("Vectors don't have the same size...");
+			return newvec;
+			}
+		for(int i=0; i<v.size; i++){
+			newvec[i] = v[i] + u[i];
+			}
+		return newvec;
+		}
+
 	public static vector operator-(vector v, vector u){
 		vector newvec = new vector(v.size);
 		if(v.size != u.size){
@@ -84,6 +110,14 @@ public class vector{
 		return newvec;
 		}
 
+	public static vector operator-(vector v){
+		vector newvec = new vector(v.size);
+		for(int i=0; i<v.size; i++){
+			newvec[i] = -v[i];
+			}
+		return newvec;
+		}
+
 	public static bool compare(vector a, vector b){
 		if(a.size != b.size){
 			System.Console.WriteLine("Vectors must be of the size");
@@ -92,6 +126,44 @@ public class vector{
 			if(matrix.approx(a[i], b[i])==false) return false;
 			}
 		return true;
+		}
+
+	public static vector linspace(int N, double startval, double endval){
+		vector xs = new vector(N);
+		for(int i=0; i<N; i++){
+			xs[i] = startval + i*(endval-startval)/System.Convert.ToDouble(N);
+			}
+		return xs;
+		}//linspace
+	
+	public static int binsearch(vector x, double z){
+		int i = 0;
+		int j = x.size - 1;
+		//If z isn't contained in x, throw an exception
+		if(z<x[i] || z>x[j]){
+			throw new System.ArgumentException("z is not contained in x. Choose new z");
+		}
+		//Continue to cut away the half of all indicies that z isn't contained in
+		//Stop when we have x[i]<z<x[i+1], where i+1=j
+		while(j-i>1){
+			int mid = (i+j)/2;
+			if(z > x[mid]){i = mid;}
+			else{j=mid;}
+		}
+		return i;
+		}//binsearch
+
+	public vector copy(){
+		vector clone = new vector(this.size);
+		clone = clone + this;
+		return clone;
+		}
+
+	public double length(){
+		double length = 0;
+		for(int i=0; i<this.size; i++){length += this[i]*this[i];}
+		length = System.Math.Sqrt(length);
+		return length;
 		}
 }//vector class
 

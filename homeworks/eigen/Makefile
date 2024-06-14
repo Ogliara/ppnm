@@ -7,7 +7,7 @@ main.exe: main.cs jacobi.dll
 jacobi.dll: jacobi.cs matrix.dll
 	mcs -target:library -reference:matrix.dll -out:$@ $<
 
-matrix.dll: matrix.cs #Note: The matrix.cs here is a copy from /lineqs. Merge later.
+matrix.dll: matrix.cs #Note: Updated matrix.cs to version 12.06.2024.
 	mcs -target:library -out:$@ $<
 
 PHONEY: clean
