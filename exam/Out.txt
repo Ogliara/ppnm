@@ -1,1 +1,3 @@
-Hello, World!
+f(3,5) = 31.
+Analytic answer = 433.
+Numerical answer = 433.25.

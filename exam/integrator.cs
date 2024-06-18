@@ -9,8 +9,8 @@ public static class integrator{
 	 double a, double b,
 	 Func<double,double> d,
 	 Func<double,double> u,
-	 double delta,
-	 double epsilon){
+	 double delta = 0.001,
+	 double epsilon = 0.001){
 		Func<double,double> g = x => {
 			Func<double,double> fy = y => f(x,y);
 			return integrate(fy, d(x), u(x), delta, epsilon);
