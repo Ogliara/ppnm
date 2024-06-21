@@ -1,7 +1,25 @@
+//Version 18.06.2024 - with 2D integration
+
 using System;
 using static System.Math;
 
 public static class integrator{
+	public static double integrate2d(
+	 Func<double, double, double> f, 
+	 double a, double b,
+	 Func<double,double> d,
+	 Func<double,double> u,
+	 double delta = 0.001,
+	 double epsilon = 0.001){
+		Func<double,double> g = x => {
+			Func<double,double> fy = y => f(x,y);
+			return integrate(fy, d(x), u(x), delta, epsilon);
+		};
+		double res = integrate(g, a, b, delta, epsilon);
+		return res;
+	}//integrate2d function
+
+
 	//Integration rutine using the points and and weights that Dimitri used in his example.
 	public static double integrate
 	(Func<double,double> f, double a, double b, 
@@ -33,5 +51,5 @@ public static class integrator{
 		if(z<0){return -erf(-z);}
 		if(z>0 && z<1){return 2/Sqrt(PI)*integrate(func1,0,z);}
 		else{return 1-2/Sqrt(PI)*integrate(func2,0,1);}
-	}
+	}//error function
 }//integrator class

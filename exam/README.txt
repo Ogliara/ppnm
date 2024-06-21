@@ -1,16 +1,15 @@
-NOTE TO SELF: At the end of the project, check if matrix.cs is ever used. If not, remove it.
+Project number 7: Least-squares signal declipping.
 
-Project number 7: Adaptive two-dimensional integrator.
-
-Goal: To implement a two-dimensional integrator using my own adaptive one-dimensional integrator along both paths.
+Goal: Implement least-squares minimization for declipping following the idea in this paper:
+https://www.cs.cmu.edu/afs/cs/user/robust/www/Papers/cbar14.pdf
 
 
 							INITIAL PLAN:
-Step 1) Bring in matrix.cs and integrator.cs.
+Step 1) Do research on subject and formulate goal.
 
-Step 2) Figure out how to use the 1D integrator for 2D.
+Step 2) Bring in matrix.cs and other scripts.
 
-Step 3) Construct the 2D integrator.
+Step 3) Construct initial draft.
 
 Step 4) Debug the hell out of it. Figure out its limits so it can be fixed or reported on.
 
