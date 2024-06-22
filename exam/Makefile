@@ -1,5 +1,20 @@
-Out.txt: main.exe
-	mono $< 1>$@
+declipping.gnuplot.svg: plotdata.txt Makefile
+	echo '\
+		set terminal svg background "white" ;\
+		set out "$@" ;\
+		set key right;\
+		set xlabel "x" ;\
+		set ylabel "y" ;\
+		set tics out ;\
+		set grid ;\
+		set title "Declipping" ;\
+		plot \
+			"$<" using 1:2 title "Clipped signal" \
+			,"$<" using 1:3 with lines title "Declipped signal" ;\
+	' | tee log.gpi | gnuplot
+
+plotdata.txt: main.exe
+	mono $< 1>Out.txt 2>$@
 
 main.exe: main.cs matrix.dll ls.dll
 	mcs -target:exe -reference:matrix.dll -reference:ls.dll -out:$@ $<

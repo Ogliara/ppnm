@@ -1,0 +1,13 @@
+\
+	set terminal svg background "white" ;\
+	set out "declipping.gnuplot.svg" ;\
+	set key right;\
+	set xlabel "x" ;\
+	set ylabel "y" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Declipping" ;\
+	plot \
+		"plotdata.txt" using 1:2 title "Clipped signal" \
+		,"plotdata.txt" using 1:3 with lines title "Declipped signal" ;\
+
