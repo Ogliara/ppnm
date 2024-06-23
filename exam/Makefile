@@ -30,4 +30,4 @@ matrix.dll: matrix.cs
 
 PHONEY: clean
 clean:
-	rm -f *.dll main.exe Out.txt
+	rm -f *.dll main.exe Out.txt plotdata.txt *.gnuplot.svg log.gpi
