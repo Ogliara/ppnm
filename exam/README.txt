@@ -8,6 +8,9 @@ the positions of clipped data points in y, m. With these, it then calculates the
 derivative matrix, D, such that these can be multiplied together in order to apply my QRGS.solve() function, 
 thus finding the z-vector, which it then returns. The user can then plug this into y in order to form the x-vector, 
 which is the declipped signal.
+	The figure declipping.gnuplot.svg shows a graphic comparison between the original signal, the signal 
+after being clipped, and the restored signal for a signal given by 2sin(t)+3cos(t). The approximation found by the 
+routine holds very well except for at the very beginning and the very end, as is to be expected. 
 
 Self-evaluation: With the understanding that it is hard to judge my own work reasonably, I'd give my work here an 
 8 out of 10 score. I have accomplished the task fully, though I wouldn't be surprised if there are plenty of 
